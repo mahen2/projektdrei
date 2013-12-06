@@ -1,6 +1,8 @@
-# ignore config file with API keys#
+# ignore config file with API keys
 config.json
 
+# ignore changes in PDF files
+*.pdf
 
 # Compiled source #
 ###################
@@ -39,3 +41,6 @@ config.json
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.pdf
+
+Projektseminar IM - Projekt 3.pdf
