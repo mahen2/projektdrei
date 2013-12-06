@@ -1,5 +1,5 @@
-# plane config #
-config.py
+# ignore config file with API keys#
+config.json
 
 
 # Compiled source #
