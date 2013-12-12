@@ -9,6 +9,7 @@ config.json
 *.com
 *.class
 *.dll
+*.pyc
 *.exe
 *.o
 *.so
