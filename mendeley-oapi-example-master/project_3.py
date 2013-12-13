@@ -4,12 +4,12 @@ from mendeley_client import *
 
 
 def save_as_pickle(p_object, filename):
-    with open("%s.pk" % filename, "w") as p_output:
+    with open("%s.pk" % filename, "wb") as p_output:
         pickle.dump(p_object, p_output, pickle.HIGHEST_PROTOCOL)
 
 
 def open_from_pickle(filename):
-    with open("%s.pk" % filename, "r") as p_input:
+    with open("%s.pk" % filename, "rb") as p_input:
         r_object = pickle.load(p_input)
     return r_object
 
@@ -17,7 +17,7 @@ def open_from_pickle(filename):
 if __name__ == "__main__":
 
     # Collect the required data
-    mendeley = create_client()
+    # mendeley = create_client()
     # categories = mendeley.categories()
     
     # Overall publications publications of all time
@@ -51,6 +51,6 @@ if __name__ == "__main__":
 
     # Read the pickle files
     # pprint(open_from_pickle("overall_pub"))
-    # open_from_pickle("top20tags")
+    print open_from_pickle("top20tags")
     # print open_from_pickle("pub_stock")
     # onto = open_from_pickle("onto_tagged")
