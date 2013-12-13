@@ -3,6 +3,7 @@ from mendeley_client import *
 import operator
 import numpy as np
 from matplotlib import pyplot as p
+from datetime import datetime
 
 
 
@@ -64,6 +65,7 @@ if __name__ == "__main__":
 	# fig.autofmt_xdate()
 	# p.show()
 	
+	"""
 	# Overall Publications
 	publications = open_from_pickle("overall_pub")
 	pub_years = {}
@@ -76,12 +78,16 @@ if __name__ == "__main__":
 			pub_years[element["year"]] = 1
 	sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
 	for element in sorted_years:
-		pub_syears.append(element[0])
+		pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
 		pub_scount.append(element[1])
-		
-	print pub_syears, pub_scount
-		
-
+	p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
+	p.ylabel("Publications")
+	p.title("Overall number of Publications/year")
+	p.grid=True
+	p.show()
+	# TODO: y-Achse auf 0 setzen und mehr Werte
+	"""
+	
     # Save the collected data in pickle files
     # save_as_pickle(overall_pub, "overall_pub")
     # save_as_pickle(top20tags, "top20tags")
