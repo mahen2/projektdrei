@@ -1,5 +1,8 @@
 from pprint import pprint
 from mendeley_client import *
+import operator
+import numpy as np
+from matplotlib import pyplot as p
 
 
 
@@ -41,6 +44,43 @@ if __name__ == "__main__":
     #         tags = mendeley.tagged("ontology", cat=category["id"], items=500, page_count)
     #         onto_tagged.append(tags)
     
+	# Plotting
+	
+	# Top20 Tags
+	# tags = open_from_pickle("top20tags")
+	# tags_value = []
+	# tags_name = []
+	# for element in tags:
+	# 	tags_value.append(element["count"])
+	# 	tags_name.append(element["name"].encode("utf-8"))
+	# ind=range(len(tags_value))
+	# fig = p.figure()
+	# ax = fig.add_subplot(1,1,1)
+	# ax.bar(ind, tags_value, align='center')
+	# ax.set_ylabel('Anzahl')
+	# ax.set_title("Top20 Tags der Kategorie 'Computer and Informationscience'")
+	# ax.set_xticks(ind)
+	# ax.set_xticklabels(tags_name)
+	# fig.autofmt_xdate()
+	# p.show()
+	
+	# Overall Publications
+	publications = open_from_pickle("overall_pub")
+	pub_years = {}
+	pub_syears = []
+	pub_scount = []
+	for element in publications:
+		if element["year"] in pub_years:
+			pub_years[element["year"]] += 1
+		else:
+			pub_years[element["year"]] = 1
+	sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
+	for element in sorted_years:
+		pub_syears.append(element[0])
+		pub_scount.append(element[1])
+		
+	print pub_syears, pub_scount
+		
 
     # Save the collected data in pickle files
     # save_as_pickle(overall_pub, "overall_pub")
@@ -51,6 +91,6 @@ if __name__ == "__main__":
 
     # Read the pickle files
     # pprint(open_from_pickle("overall_pub"))
-    print open_from_pickle("top20tags")
+    # print open_from_pickle("top20tags")
     # print open_from_pickle("pub_stock")
     # onto = open_from_pickle("onto_tagged")
