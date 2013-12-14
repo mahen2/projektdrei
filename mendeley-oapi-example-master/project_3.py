@@ -20,12 +20,14 @@ def open_from_pickle(filename):
 
 if __name__ == "__main__":
 
+
     # ### Collect the required data ###
 
     mendeley = create_client()
     # categories = mendeley.categories()
 
     # Overall publications publications of all time
+    # TODO fix
     # overall_pub = mendeley.paper_stats()
 
     # # Top 20 Tags from Computer and Information Science (cat 6)
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     # pub_stock = mendeley.search("author:\"Wolfgang G Stock\"", items=500)
 
     # Top 10 publications published in "Nature"
-    # TODO Do it
+    top10_nature = mendeley.search("published_in:\"Nature\"", items=10)
 
     # All Publications with the tag "ontology"
     # onto_tagged = []
@@ -46,21 +48,14 @@ if __name__ == "__main__":
     #         onto_tagged.append(tags)
     # TODO Limit to year 2011
 
+
     # ### Save the collected data in pickle files ###
 
     # save_as_pickle(overall_pub, "overall_pub")
     # save_as_pickle(top20tags, "top20tags")
     # save_as_pickle(pub_stock, "pub_stock")
+    save_as_pickle(top10_nature, "top10_nature")
     # save_as_pickle(onto_tagged, "onto_tagged")
-
-
-    # ### Read the pickle files ###
-
-    # pprint(open_from_pickle("overall_pub"))
-    # print open_from_pickle("top20tags")
-    # onto = open_from_pickle("onto_tagged")
-    # pub_stock = open_from_pickle("pub_stock")
-
 
 
     # ### Plotting ###
