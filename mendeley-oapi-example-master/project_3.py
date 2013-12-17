@@ -85,27 +85,39 @@ if __name__ == "__main__":
     # fig.autofmt_xdate()
     # p.show()
 
+    """
     # Overall Publications
-    # publications = open_from_pickle("overall_pub")
-    # pub_years = {}
-    # pub_syears = []
-    # pub_scount = []
-    # for element in publications:
-    #     if element["year"] in pub_years:
-    #         pub_years[element["year"]] += 1
-    #     else:
-    #         pub_years[element["year"]] = 1
-    # sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
-    # for element in sorted_years:
-    #     pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
-    #     pub_scount.append(element[1])
-    # p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
-    # p.ylabel("Publications")
-    # p.title("Overall number of Publications/year")
-    # p.grid=True
-    # p.show()
-    # TODO: y-Achse auf 0 setzen und mehr Werte
-    
+    publications = open_from_pickle("overall_pub")
+    pub_years = []
+    pub_dic = {}
+    all_years = []
+    pub_syears = []
+    pub_scount = []
+    for element in publications:
+        pub_years.append(element["year"])
+    pub_years=sorted(pub_years)
+    for i in range(pub_years[0], pub_years[-1]):
+        all_years.append(i)
+    for year in all_years:
+        if year in pub_years:
+            for element in publications:
+                if year==element["year"]:
+                    if element["year"] in pub_dic:
+                        pub_dic[element["year"]] += 1
+                    else:
+                        pub_dic[element["year"]] = 1
+        else:
+            pub_dic[year] = 0
+    sorted_years = sorted(pub_dic.iteritems(), key=operator.itemgetter(0))
+    for element in sorted_years:
+        pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
+        pub_scount.append(element[1])
+    p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
+    p.ylabel("Publications")
+    p.title("Overall number of Publications/year")
+    p.grid=True
+    p.show()
+    """
     """
     # Stock Publications/Year
     publications = open_from_pickle("pub_stock")
