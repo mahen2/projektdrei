@@ -63,6 +63,7 @@ if __name__ == "__main__":
     # save_as_pickle(pub_stock, "pub_stock")
     # save_as_pickle(top10_nature, "top10_nature")
     # save_as_pickle(onto_tagged, "onto_tagged")
+    # pprint (open_from_pickle("top10_nature")["documents"])
 
 
     # ### Plotting ###
@@ -88,35 +89,28 @@ if __name__ == "__main__":
     
     # Overall Publications
     publications = open_from_pickle("overall_pub")
-    pub_years = []
-    pub_dic = {}
-    all_years = []
+    sizes = []
+    t = 0
+    pub_years = {}
     pub_syears = []
     pub_scount = []
     for element in publications:
-        if element["year"] >= 2003:
-            pub_years.append(element["year"])
-    pub_years=sorted(pub_years)
-    for i in range(pub_years[0], pub_years[-1]):
-        all_years.append(i)
-    for year in all_years:
-        if year in pub_years:
-            for element in publications:
-                if year==element["year"]:
-                    if element["year"] in pub_dic:
-                        pub_dic[element["year"]] += 1
-                    else:
-                        pub_dic[element["year"]] = 1
-        else:
-            pub_dic[year] = 0
-    sorted_years = sorted(pub_dic.iteritems(), key=operator.itemgetter(0))
+        if element["year"] >=2003:
+            if element["year"] in pub_years:
+                pub_years[element["year"]] += 1
+            else:
+                pub_years[element["year"]] = 1
+    sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
     for element in sorted_years:
-        pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
+        pub_syears.append(element[0])
         pub_scount.append(element[1])
-    p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
-    p.ylabel("Publications")
-    p.title("Overall number of Publications/year")
-    p.grid=True
+    for element in pub_scount:
+        t = t+element
+    for element in pub_scount:
+        x = (float(element)/t)*100
+        sizes.append(x)
+    p.pie(sizes, labels=pub_syears, autopct='%1.1f%%', startangle=90)
+    p.axis('equal')
     p.show()
     
     """
