@@ -4,7 +4,7 @@ import operator
 import numpy as np
 from matplotlib import pyplot as p
 from datetime import datetime
-
+import json
 
 
 def save_as_pickle(p_object, filename):
@@ -25,6 +25,10 @@ if __name__ == "__main__":
 
     # mendeley = create_client()
     # categories = mendeley.categories()
+
+    # Export all categories for later usage
+    # with open("categories.json", "wb") as json_output:
+    #     json.dump(categories, json_output, indent=4)
 
     # Overall publications publications of all time
     # overall_pub = {}
