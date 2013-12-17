@@ -122,6 +122,76 @@ Eine Liste von Strings als Parameter <em>names</em> bestimmt die Labels der x-Ac
 </dd></dl>
 
 </div>
+<div class="section" id="details-datensammlung">
+<h2>Details Datensammlung<a class="headerlink" href="#details-datensammlung" title="Permalink to this headline">¶</a></h2>
+<p>Da hier einmalig spezifische Daten gesammelt werden, erscheint ein modularer Aufbau für die Datensammlung wenig sinnvoll. Dementsprechend werden die folgenden Abfragen direkt bei Programmaufruf ausgeführt.</p>
+<p>Die gesammelten Daten werden jeweils mit <a class="reference internal" href="#project_3.save_as_pickle" title="project_3.save_as_pickle"><tt class="xref py py-func docutils literal"><span class="pre">save_as_pickle()</span></tt></a> als Pickle-Datei gespeichert.</p>
+<p><strong>Verteilung der Publikationen auf die letzten 10 Jahre</strong></p>
+<blockquote>
+<div><p>In mehreren Durchläufen (ein Durchlauf pro Jahr) werden alle Publikationen gesucht, die in dem entsprechenden Jahr erschienen sind.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">overall_pub</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span> <span class="mi">2013</span><span class="p">):</span>
+    <span class="n">overall_pub</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">mendeley</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&quot;year:</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">i</span><span class="p">)[</span><span class="s">&quot;total_results&quot;</span><span class="p">]</span>
+<span class="n">save_as_pickle</span><span class="p">(</span><span class="n">overall_pub</span><span class="p">,</span> <span class="s">&quot;overall_pub&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Die Mendeley-API gibt hier die Gesamtanzahl von Publikationen in der Ergebnismenge an. Diese Information als Wert bildet zusammen mit dem Jahr als Schlüsssel einen Eintrag in einem Dictionary.</p>
+</div></blockquote>
+<p><strong>Top 20 Tags in der Kategorie „Computer and Information Science“</strong></p>
+<blockquote>
+<div><p>Die Mendeley-API ermöglicht Zugriff auf Statistiken für Tags bestimmter Kategorien. Die Kategorie wird als ID (hier 6) übergeben.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">top20tags</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">tag_stats</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">save_as_pickle</span><span class="p">(</span><span class="n">top20tags</span><span class="p">,</span> <span class="s">&quot;top20tags&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Die IDs der einzelnen Kategorien können über die API abgefragt werden.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">categories</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">categories</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Top 10 Publikationen aus der „Nature“</strong></p>
+<blockquote>
+<div><p>Die Mendeley Suche mit &#8220;published_in:&#8221; als Suchparameter gibt standardmäßig Publikationen sortiert nach Leseranzahl zurück.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">search_nature</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&quot;published_in:</span><span class="se">\&quot;</span><span class="s">Nature</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Um die Daten visualisieren zu können, müssen zusätzlich noch die Leser jeder Publikation bestimmt werden. Mendeley gibt diese Information über über die Methode &#8221;.details&#8221; an. Parameter ist eine spezielle UUID der jeweiligen Publikation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">top10_nature</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">search_nature</span><span class="p">[</span><span class="s">&quot;documents&quot;</span><span class="p">]:</span>
+    <span class="n">top10_nature</span><span class="p">[</span><span class="n">elem</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">details</span><span class="p">(</span><span class="n">elem</span><span class="p">[</span><span class="s">&quot;uuid&quot;</span><span class="p">])[</span><span class="s">&quot;stats&quot;</span><span class="p">][</span><span class="s">&quot;readers&quot;</span><span class="p">]</span>
+<span class="n">save_as_pickle</span><span class="p">(</span><span class="n">top10_nature</span><span class="p">,</span> <span class="s">&quot;top10_nature&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Special: Publikationen von Prof. Wolfang G. Stock</strong></p>
+<blockquote>
+<div><p>Die Mendeley-API bietet zwar eine spezielle Methode für die Autorensuche an, allerdings ermöglicht diese keine Suche nach exaktem Autorennamen. Stattdessen wird die normale Suche mit &#8220;authored:&#8221; als Suchparameter verwendet. Die Anführungszeichen erzwingen exakte Übereinstimmung.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pub_stock</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&quot;author:</span><span class="se">\&quot;</span><span class="s">Wolfgang G Stock</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">save_as_pickle</span><span class="p">(</span><span class="n">pub_stock</span><span class="p">,</span> <span class="s">&quot;pub_stock&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Die weitere Verarbeitung erfolgt direkt bei der Visualisierung. Alle notwendigen Informationen befinden sich in der Ergebnismenge (Publikationsanzahl pro Jahr
+und Co-Autoren Ranking).</p>
+</div></blockquote>
+<p><strong>Häufigkeit des Tags „ontology“ in allen Kategorien im Jahr 2011</strong></p>
+<blockquote>
+<div><p>Für jede Kategorie in Mendeley wird die Häufigkeit des Tags &#8220;ontology&#8221; bestimmt. Hierfür wird zunächst für jede Kategorie ein Eintrag in einem Dictionary <em>onto_tagged</em> mit initial 0 als Zählwert vorgenommen. Dann werden alle passenden Tags in der jeweiligen Kategorie abgefragt. Da die Mendeley-API Documentmengen ab einer gewissen Größe auf mehrere Seiten aufteilt, muss entsprechend der Seitenzahl mehrmals abgefragt werden.
+Für jeden Eintrag in der Ergebnismenge mit 2011 als Publikationsjahr, wird der Zahlenwert für die Kategorie im Dictionary <em>onto_tagged</em> um 1 erhöht.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">onto_tagged</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
+    <span class="n">cat_id</span> <span class="o">=</span> <span class="n">category</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
+    <span class="n">onto_tagged</span><span class="p">[</span><span class="n">cat_id</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">page_count</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">tagged</span><span class="p">(</span><span class="s">&quot;ontology&quot;</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="n">cat_id</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="mi">100</span><span class="p">)[</span><span class="s">&quot;total_pages&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">page_count</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">tagged</span> <span class="o">=</span> <span class="n">mendeley</span><span class="o">.</span><span class="n">tagged</span><span class="p">(</span><span class="s">&quot;ontology&quot;</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="n">cat_id</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page_num</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">tagged</span><span class="p">[</span><span class="s">&quot;documents&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">document</span><span class="p">[</span><span class="s">&quot;year&quot;</span><span class="p">]</span><span class="o">==</span><span class="mi">2011</span><span class="p">:</span>
+                <span class="n">onto_tagged</span><span class="p">[</span><span class="n">cat_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">save_as_pickle</span><span class="p">(</span><span class="n">onto_tagged</span><span class="p">,</span> <span class="s">&quot;onto_tagged&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 <div class="section" id="referenzen">
 <h2>Referenzen<a class="headerlink" href="#referenzen" title="Permalink to this headline">¶</a></h2>
 <p>Folgende Module fanden neben der Python Standard Library Verwendung:</p>
@@ -151,6 +221,7 @@ Eine Liste von Strings als Parameter <em>names</em> bestimmt die Labels der x-Ac
 <li><a class="reference internal" href="#benutzung">Benutzung</a></li>
 <li><a class="reference internal" href="#auswertung-und-interpretation">Auswertung und Interpretation</a></li>
 <li><a class="reference internal" href="#funktionen">Funktionen</a></li>
+<li><a class="reference internal" href="#details-datensammlung">Details Datensammlung</a></li>
 <li><a class="reference internal" href="#referenzen">Referenzen</a></li>
 </ul>
 </li>
