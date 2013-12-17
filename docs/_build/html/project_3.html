@@ -49,7 +49,7 @@
           <div class="body">
             
   <div class="section" id="module-project_3">
-<span id="project-3-informetrische-untersuchung-mit-mendeley-und-matplotlib"></span><h1><a class="reference internal" href="#module-project_3" title="project_3: Ein Modul für den Mendeley API-Zugriff"><tt class="xref py py-mod docutils literal"><span class="pre">project_3</span></tt></a> &#8212; Informetrische Untersuchung mit Mendeley und Matplotlib<a class="headerlink" href="#module-project_3" title="Permalink to this headline">¶</a></h1>
+<span id="project-3-informetrische-untersuchung-mit-mendeley-und-matplotlib"></span><h1><a class="reference internal" href="#module-project_3" title="project_3: Informetrische Untersuchung mit Mendeley und Matplotlib"><tt class="xref py py-mod docutils literal"><span class="pre">project_3</span></tt></a> &#8212; Informetrische Untersuchung mit Mendeley und Matplotlib<a class="headerlink" href="#module-project_3" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="einleitung">
 <h2>Einleitung<a class="headerlink" href="#einleitung" title="Permalink to this headline">¶</a></h2>
 <p>Mit dem vorliegenden Programm werden Publikationen informetrisch untersucht. Als Basis für den Datensatz dient das Literaturverwaltungsprogramm Mendeley. Mendeley beinhaltet nicht nur eine Desktopversion zum Verwalten von Referenzen und PDF-Dateien, sondern auch ein soziales Online-Netzwerk für den Austausch und Kollaborationen zwischen Forschern. Das Programm greift auf die Publikationsdaten über die Mendeley-API zu, wertet sie aus und visualisiert sie mit Hilfe von Matplotlib.</p>
@@ -78,10 +78,13 @@
 </div>
 <div class="section" id="benutzung">
 <h2>Benutzung<a class="headerlink" href="#benutzung" title="Permalink to this headline">¶</a></h2>
-<p>Wird das Programm direkt ausgeführt werden zunächst alle Daten über die Mendeley-API gesammelt. Dabei wird davon ausgegangen, dass sich eine Datei <em>config.json</em> im gleichen Verzeichnis befindet, in der
-Dafür kann &#8220;bsp config.json&#8221; verwendet werden und muss entsprechend umbenannt werden.
-Auswertung und Interpretation
-&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+<p>Wird das Programm direkt ausgeführt werden zunächst alle Daten über die Mendeley-API gesammelt. Dabei wird davon ausgegangen, dass sich eine Datei &#8220;config.json&#8221; im gleichen Verzeichnis befindet. Hierfür kann &#8220;bsp config.json&#8221; entsprechend angepasst und umbenannt werden.</p>
+<p>Unter Umständen kann die Datensammlung das Limit der Mendeley-API ausreizen. Ist dies der Fall müssen zunächst einzelne Abschnitte auskommentiert werden. Die Datensammlung wird im Code durch den Kommentar <em># ### Collect the required data ###</em> eingeleitet.</p>
+<p>Die gesammelten Daten werden autmatisch zwischengespeichert, sodass nicht bei jedem Programmaufruf auf die API zugegriffen werden muss. Um die zwischengespeicherten Daten zu verwenden, kann die gesammte Datensammlung auskommentiert werden (markiert durch * # ### Collect the required data ###*).
+Das Programm wird bereits mit Daten vom 17 Dezember 2013 ausgeliefert. Die Rechte dieser Daten liegt bei Mendeley.</p>
+</div>
+<div class="section" id="auswertung-und-interpretation">
+<h2>Auswertung und Interpretation<a class="headerlink" href="#auswertung-und-interpretation" title="Permalink to this headline">¶</a></h2>
 <p>Blablub informetrie</p>
 </div>
 <div class="section" id="funktionen">
@@ -146,6 +149,7 @@ Eine Liste von Strings als Parameter <em>names</em> bestimmt die Labels der x-Ac
 <li><a class="reference internal" href="#einleitung">Einleitung</a></li>
 <li><a class="reference internal" href="#funktionsumfang">Funktionsumfang</a></li>
 <li><a class="reference internal" href="#benutzung">Benutzung</a></li>
+<li><a class="reference internal" href="#auswertung-und-interpretation">Auswertung und Interpretation</a></li>
 <li><a class="reference internal" href="#funktionen">Funktionen</a></li>
 <li><a class="reference internal" href="#referenzen">Referenzen</a></li>
 </ul>

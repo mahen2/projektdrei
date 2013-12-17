@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   1. Modul project_3 <project_3.rst>
+   1. project_3 - Informetrische Untersuchung mit Mendeley und Matplotlib <project_3.rst>
 
 
 
