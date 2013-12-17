@@ -16,8 +16,8 @@ def open_from_pickle(filename):
     with open("%s.pk" % filename, "rb") as p_input:
         r_object = pickle.load(p_input)
     return r_object
-    
-# Draws a barchart with the matplotlib-library using the given values. 
+
+# Draws a barchart with the matplotlib-library using the given values.
 def draw_barchart(names, values, ylabel, title):
     ind=range(len(values))
     fig = p.figure()
@@ -28,9 +28,9 @@ def draw_barchart(names, values, ylabel, title):
     ax.set_xticks(ind)
     ax.set_xticklabels(names)
     fig.autofmt_xdate()
-    p.show()    
+    p.show()
 
-# Draws a piechart with the matplotlib-library using the given values. 
+# Draws a piechart with the matplotlib-library using the given values.
 def draw_piechart(names, values):
     t= 0
     sizes=[]
@@ -44,7 +44,7 @@ def draw_piechart(names, values):
     p.axis('equal')
     p.show()
 
-# Draws a timeline with the matplotlib-library using the given values and dates. 
+# Draws a timeline with the matplotlib-library using the given values and dates.
 def draw_timeline(names, values, ylabel, title):
     p.plot_date(x=names, y=values, fmt="-")
     p.ylabel(ylabel)
@@ -52,7 +52,7 @@ def draw_timeline(names, values, ylabel, title):
     p.ylim(ymin=0)
     p.grid=True
     p.show()
-    
+
 if __name__ == "__main__":
 
 
@@ -115,7 +115,7 @@ if __name__ == "__main__":
         tags_name.append(element["name"].encode("utf-8"))
     draw_barchart(tags_name, tags_value, "Haeufigkeit des vergebenen Tags", "Top20 Tags der Kategorie 'Computer and Informationscience'")
     """
-    
+
     # Draws a piechart giving the percentage distribution of the overall publications of the last 10 years.
     """
     # Overall Publications
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         pub_scount.append(element[1])
     draw_piechart(pub_syears, pub_scount)
     """
-    
+
     # Draws a timeline for the publications of "Wolfgang G. Stock".
     """
     # Stock Publications/Year
@@ -173,7 +173,7 @@ if __name__ == "__main__":
         pub_scount.append(element[1])
     draw_timeline(pub_syears, pub_scount, "Anzahl der Publikationen", "Anzahl der Publikationen/Jahr von Wolfgang G. Stock")
     """
-    
+
     # Draws a barchart of all of the authors, who co-authored Wolfgang G. Stock and sorts them by the number of co-published papers
     """
     # Stock Co-Authors
@@ -195,9 +195,9 @@ if __name__ == "__main__":
     for element in sorted_authors:
         authors_name.append(element[0])
         authors_value.append(element[1])
-    draw_barchart(authors_name, authors_value, "Anzahl gem. publizierter Artikel", "Co-Autoren von Wolfgang G. Stock") 
+    draw_barchart(authors_name, authors_value, "Anzahl gem. publizierter Artikel", "Co-Autoren von Wolfgang G. Stock")
     """
-    
+
     # Draws a piechart given the frequencys a category on mendeley was tagged with "ontology".
     """
     # Ontology
