@@ -69,36 +69,41 @@ if __name__ == "__main__":
     # overall_pub = {}
     # for i in range(2003, 2013):
     #     overall_pub[i]=mendeley.search("year:%s"%i)["total_results"]
+    # save_as_pickle(overall_pub, "overall_pub")
 
     # # Top 20 Tags from Computer and Information Science (cat 6)
     # top20tags = mendeley.tag_stats(6)
+    # save_as_pickle(top20tags, "top20tags")
 
     # All publications by the author Wolfgang G Stock
     # pub_stock = mendeley.search("author:\"Wolfgang G Stock\"", items=500)
+    # save_as_pickle(pub_stock, "pub_stock")
 
     # Top 10 publications published in "Nature"
-    # top10_nature = mendeley.search("published_in:\"Nature\"", items=10)
+    # search_nature = mendeley.search("published_in:\"Nature\"", items=10)
+    # top10_nature = {}
+    # for elem in open_from_pickle("top10_nature")["documents"]:
+    #     search_nature[elem["title"]] = mendeley.details(elem["uuid"])\
+    #                                    ["stats"]["readers"]
+    # save_as_pickle(top10_nature, "top10_nature")
 
     # All Publications with the tag "ontology"
     # onto_tagged = {}
     # for category in categories:
-    #     onto_tagged[category["id"]] = 0
-    #     page_count = mendeley.tagged("ontology", items=500)["total_pages"]
+    #     cat_id = category["id"]
+    #     onto_tagged[cat_id] = 0
+    #     # If the item value is too high (not max 500 as with .search)
+    #     # no documents are returned
+    #     # (maybe the item value must be less than the number of results)
+    #     page_count = mendeley.tagged("ontology", cat=cat_id, items=100)\
+    #                  ["total_pages"]
     #     for page_num in range(1, page_count+1):
-    #         tagged = mendeley.tagged("ontology", items=500, page=page_num)
+    #         tagged = mendeley.tagged("ontology", cat=cat_id, items=100,
+    #                                  page=page_num)
     #         for document in tagged["documents"]:
     #             if document["year"]==2011:
-    #                 onto_tagged[category["id"]] += 1
-
-
-    # ### Save the collected data in pickle files ###
-
-    # save_as_pickle(overall_pub, "overall_pub")
-    # save_as_pickle(top20tags, "top20tags")
-    # save_as_pickle(pub_stock, "pub_stock")
-    # save_as_pickle(top10_nature, "top10_nature")
+    #                 onto_tagged[cat_id] += 1
     # save_as_pickle(onto_tagged, "onto_tagged")
-    # pprint (open_from_pickle("top10_nature")["documents"])
 
 
     # ### Plotting ###
@@ -117,26 +122,26 @@ if __name__ == "__main__":
     """
 
     # Draws a piechart giving the percentage distribution of the overall publications of the last 10 years.
-    """
+
     # Overall Publications
-    publications = open_from_pickle("overall_pub")
-    pub_years = {}
-    pub_syears = []
-    pub_scount = []
-    # Check if the publication year is in the last 10 years. If yes, add it to the dictionary or increase its frequency
-    for element in publications:
-        if element["year"] >=2003:
-            if element["year"] in pub_years:
-                pub_years[element["year"]] += 1
-            else:
-                pub_years[element["year"]] = 1
-    # Make a list of tuples sorted by the frequency ot of the dictionary
-    sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
-    for element in sorted_years:
-        pub_syears.append(element[0])
-        pub_scount.append(element[1])
-    draw_piechart(pub_syears, pub_scount)
-    """
+    # publications = open_from_pickle("overall_pub")
+    # pub_years = {}
+    # pub_syears = []
+    # pub_scount = []
+    # # Check if the publication year is in the last 10 years. If yes, add it to the dictionary or increase its frequency
+    # for element in publications:
+    #     if element["year"] >=2003:
+    #         if element["year"] in pub_years:
+    #             pub_years[element["year"]] += 1
+    #         else:
+    #             pub_years[element["year"]] = 1
+    # # Make a list of tuples sorted by the frequency ot of the dictionary
+    # sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
+    # for element in sorted_years:
+    #     pub_syears.append(element[0])
+    #     pub_scount.append(element[1])
+    # draw_piechart(pub_syears, pub_scount)
+
 
     # Draws a timeline for the publications of "Wolfgang G. Stock".
     """
@@ -199,14 +204,14 @@ if __name__ == "__main__":
     """
 
     # Draws a piechart given the frequencys a category on mendeley was tagged with "ontology".
-    """
+
     # Ontology
-    ontology = open_from_pickle("onto_tagged")
-    categories = []
-    values = []
-    for element in ontology:
-        if ontology[element] != 0:
-            categories.append(element)
-            values.append(ontology[element])
-    draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
-    """
+    # ontology = open_from_pickle("onto_tagged")
+    # categories = []
+    # values = []
+    # for element in ontology:
+    #     if ontology[element] != 0:
+    #         categories.append(element)
+    #         values.append(ontology[element])
+    # draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
+
