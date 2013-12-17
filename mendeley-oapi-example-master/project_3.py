@@ -105,3 +105,38 @@ if __name__ == "__main__":
     # p.grid=True
     # p.show()
     # TODO: y-Achse auf 0 setzen und mehr Werte
+    
+    """
+    # Stock Publications/Year
+    publications = open_from_pickle("pub_stock")
+    pub_years = []
+    pub_dic = {}
+    all_years = []
+    pub_syears = []
+    pub_scount = []
+    for element in publications["documents"]:
+        pub_years.append(element["year"])
+    pub_years=sorted(pub_years)
+    for i in range(pub_years[0], pub_years[-1]):
+        all_years.append(i)
+    for year in all_years:
+        if year in pub_years:
+            for element in publications["documents"]:
+                if year==element["year"]:
+                    if element["year"] in pub_dic:
+                        pub_dic[element["year"]] += 1
+                    else:
+                        pub_dic[element["year"]] = 1
+        else:
+            pub_dic[year] = 0
+    sorted_years = sorted(pub_dic.iteritems(), key=operator.itemgetter(0))
+    for element in sorted_years:
+        pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
+        pub_scount.append(element[1])
+    p.plot_date(x=pub_syears, y=pub_scount, fmt="-")
+    p.ylabel("Publications")
+    p.title("Number of Publications/year from Wolfgang G. Stock")
+    p.ylim(ymin=0)
+    p.grid=True
+    p.show()
+    """
