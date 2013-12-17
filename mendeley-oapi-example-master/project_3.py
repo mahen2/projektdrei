@@ -85,7 +85,7 @@ if __name__ == "__main__":
     # fig.autofmt_xdate()
     # p.show()
 
-    """
+    
     # Overall Publications
     publications = open_from_pickle("overall_pub")
     pub_years = []
@@ -94,7 +94,8 @@ if __name__ == "__main__":
     pub_syears = []
     pub_scount = []
     for element in publications:
-        pub_years.append(element["year"])
+        if element["year"] >= 2003:
+            pub_years.append(element["year"])
     pub_years=sorted(pub_years)
     for i in range(pub_years[0], pub_years[-1]):
         all_years.append(i)
@@ -117,7 +118,7 @@ if __name__ == "__main__":
     p.title("Overall number of Publications/year")
     p.grid=True
     p.show()
-    """
+    
     """
     # Stock Publications/Year
     publications = open_from_pickle("pub_stock")
