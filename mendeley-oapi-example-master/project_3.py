@@ -86,7 +86,7 @@ if __name__ == "__main__":
     # fig.autofmt_xdate()
     # p.show()
 
-    
+    """
     # Overall Publications
     publications = open_from_pickle("overall_pub")
     sizes = []
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     p.pie(sizes, labels=pub_syears, autopct='%1.1f%%', startangle=90)
     p.axis('equal')
     p.show()
-    
+    """
     """
     # Stock Publications/Year
     publications = open_from_pickle("pub_stock")
@@ -147,3 +147,33 @@ if __name__ == "__main__":
     p.grid=True
     p.show()
     """
+    
+    # Stock Co-Authors
+    publications = open_from_pickle("pub_stock")["documents"]
+    authors = {}
+    authors_value = []
+    authors_name = []
+    for article in publications:
+        for author in article["authors"]:
+            if (author["surname"] != "Stock" and author["forename"] != "Wolfgang G.") and (author["surname"] != "G. Stock" and author["forename"] != "Wolfgang"):
+                name = author["forename"]+" "+author["surname"]
+                if name in authors:
+                    authors[name] += 1
+                else:
+                    authors[name] = 1
+    sorted_authors = sorted(authors.iteritems(), key=operator.itemgetter(1), reverse = True)
+    for element in sorted_authors:
+        authors_name.append(element[0])
+        authors_value.append(element[1])
+    ind=range(len(authors_value))
+    fig = p.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.bar(ind, authors_value)
+    ax.set_ylabel('Anzahl gem. publizierter Artikel')
+    ax.set_title("Co-Autoren von Wolfgang G. Stock")
+    ax.set_xticks(ind)
+    ax.set_xticklabels(authors_name)
+    fig.autofmt_xdate()
+    p.ylim(ymax=8)
+    p.show()    
+    
