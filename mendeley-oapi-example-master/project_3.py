@@ -65,19 +65,15 @@ if __name__ == "__main__":
     with open("categories.json", "wb") as json_output:
         json.dump(categories, json_output, indent=4)
 
-    # Overall publications publications of all time
+    # distribution of publications over last 10 years
     overall_pub = {}
     for i in range(2003, 2013):
         overall_pub[i]=mendeley.search("year:%s"%i)["total_results"]
     save_as_pickle(overall_pub, "overall_pub")
 
-    # # Top 20 Tags from Computer and Information Science (cat 6)
+    # Top 20 Tags from Computer and Information Science (cat 6)
     top20tags = mendeley.tag_stats(6)
     save_as_pickle(top20tags, "top20tags")
-
-    # All publications by the author Wolfgang G Stock
-    pub_stock = mendeley.search("author:\"Wolfgang G Stock\"", items=500)
-    save_as_pickle(pub_stock, "pub_stock")
 
     # Top 10 publications published in "Nature"
     search_nature = mendeley.search("published_in:\"Nature\"", items=10)
@@ -86,6 +82,10 @@ if __name__ == "__main__":
         top10_nature[elem["title"]] = mendeley.details(elem["uuid"])\
                                        ["stats"]["readers"]
     save_as_pickle(top10_nature, "top10_nature")
+
+    # All publications by the author Wolfgang G Stock
+    pub_stock = mendeley.search("author:\"Wolfgang G Stock\"", items=500)
+    save_as_pickle(pub_stock, "pub_stock")
 
     # All Publications with the tag "ontology"
     onto_tagged = {}
