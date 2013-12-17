@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>project_3 — Ein Modul für den Mendeley API-Zugriff &mdash; Project 3 - Codename 3133 1.0 documentation</title>
+    <title>project_3 — Informetrische Untersuchung mit Mendeley und Matplotlib &mdash; Project 3 - Codename 3133 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -49,28 +49,47 @@
           <div class="body">
             
   <div class="section" id="module-project_3">
-<span id="project-3-ein-modul-fur-den-mendeley-api-zugriff"></span><h1><a class="reference internal" href="#module-project_3" title="project_3: Ein Modul für den Mendeley API-Zugriff"><tt class="xref py py-mod docutils literal"><span class="pre">project_3</span></tt></a> &#8212; Ein Modul für den Mendeley API-Zugriff<a class="headerlink" href="#module-project_3" title="Permalink to this headline">¶</a></h1>
+<span id="project-3-informetrische-untersuchung-mit-mendeley-und-matplotlib"></span><h1><a class="reference internal" href="#module-project_3" title="project_3: Ein Modul für den Mendeley API-Zugriff"><tt class="xref py py-mod docutils literal"><span class="pre">project_3</span></tt></a> &#8212; Informetrische Untersuchung mit Mendeley und Matplotlib<a class="headerlink" href="#module-project_3" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="einleitung">
 <h2>Einleitung<a class="headerlink" href="#einleitung" title="Permalink to this headline">¶</a></h2>
-<p>TODO Einleitung</p>
+<p>Mit dem vorliegenden Programm werden Publikationen informetrisch untersucht. Als Basis für den Datensatz dient das Literaturverwaltungsprogramm Mendeley. Mendeley beinhaltet nicht nur eine Desktopversion zum Verwalten von Referenzen und PDF-Dateien, sondern auch ein soziales Online-Netzwerk für den Austausch und Kollaborationen zwischen Forschern. Das Programm greift auf die Publikationsdaten über die Mendeley-API zu, wertet sie aus und visualisiert sie mit Hilfe von Matplotlib.</p>
 </div>
-<div class="section" id="anleitung">
-<h2>Anleitung<a class="headerlink" href="#anleitung" title="Permalink to this headline">¶</a></h2>
-<p>TODO Anleitung</p>
-</div>
-<div class="section" id="referenzen">
-<h2>Referenzen<a class="headerlink" href="#referenzen" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Beispielmodul</li>
-<li>Mendeley-API</li>
+<div class="section" id="funktionsumfang">
+<h2>Funktionsumfang<a class="headerlink" href="#funktionsumfang" title="Permalink to this headline">¶</a></h2>
+<p>Folgende Daten von den Mendeley-Servern gesammelt und visualisiert:</p>
+<ul>
+<li><p class="first">Verteilung der Publikationen auf die letzten 10 Jahre</p>
+</li>
+<li><p class="first">Top 20 Tags in der Kategorie „Computer and Information Science“</p>
+</li>
+<li><p class="first">Top 10 Publikationen aus der „Nature“</p>
+</li>
+<li><p class="first">Special: Publikationen von Prof. Wolfang G. Stock</p>
+<blockquote>
+<div><ul class="simple">
+<li>Publikationsanzahl pro Jahr</li>
+<li>Co-Autoren Ranking</li>
 </ul>
+</div></blockquote>
+</li>
+<li><p class="first">Häufigkeit des Tags „ontology“ in allen Kategorien im Jahr 2011</p>
+</li>
+</ul>
+</div>
+<div class="section" id="benutzung">
+<h2>Benutzung<a class="headerlink" href="#benutzung" title="Permalink to this headline">¶</a></h2>
+<p>Wird das Programm direkt ausgeführt werden zunächst alle Daten über die Mendeley-API gesammelt. Dabei wird davon ausgegangen, dass sich eine Datei <em>config.json</em> im gleichen Verzeichnis befindet, in der
+Dafür kann &#8220;bsp config.json&#8221; verwendet werden und muss entsprechend umbenannt werden.
+Auswertung und Interpretation
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+<p>Blablub informetrie</p>
 </div>
 <div class="section" id="funktionen">
 <h2>Funktionen<a class="headerlink" href="#funktionen" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="project_3.save_as_pickle">
 <tt class="descclassname">project_3.</tt><tt class="descname">save_as_pickle</tt><big>(</big><em>p_object</em>, <em>filename</em><big>)</big><a class="headerlink" href="#project_3.save_as_pickle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Speichert einen beliebigen Datentyp <em>p_object</em> als eine Pickle-Datei mit dem Dateinamen <em>filename</em>.py.</p>
+<dd><p>Speichert einen beliebigen Datentyp <em>p_object</em> als eine Pickle-Datei mit dem Dateinamen <em>filename</em>.py. <em>filename</em> sollte als String übergeben werden.</p>
 </dd></dl>
 
 <dl class="function">
@@ -79,6 +98,39 @@
 <dd><p>Öffnet eine zuvor mit <a class="reference internal" href="#project_3.save_as_pickle" title="project_3.save_as_pickle"><tt class="xref py py-func docutils literal"><span class="pre">save_as_pickle()</span></tt></a> erstellte Pickle-Datei, bzw. eine beliebe Pickle-Datei, die genau einen (verschachtelten) Datentyp enthält. Der Name der Datei wird durch <em>filename</em> bestimmt.</p>
 </dd></dl>
 
+<dl class="function">
+<dt id="project_3.draw_barchart">
+<tt class="descclassname">project_3.</tt><tt class="descname">draw_barchart</tt><big>(</big><em>names</em>, <em>values</em>, <em>ylabel</em>, <em>title</em><big>)</big><a class="headerlink" href="#project_3.draw_barchart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeichnet ein Balkendiagramm für einen bestimmten Datensatz (definiert über die Parameter).
+Eine Liste von Strings als Parameter <em>names</em> bestimmt die Labels der x-Achse, <em>values</em> eine Anzahl von Daten in Form einer Liste. Die Beschriftung der y-Achse wird durch einen String <em>ylabel</em> bestimmt. Das Parameter <em>title</em> gibt den Titel des Diagramms in Form eines Strings an.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="project_3.draw_piechart">
+<tt class="descclassname">project_3.</tt><tt class="descname">draw_piechart</tt><big>(</big><em>names</em>, <em>values</em><big>)</big><a class="headerlink" href="#project_3.draw_piechart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeichnet ein Kreisdiagramm für einen bestimmten Datensatz (definiert über die Parameter). Eine Liste von Strings als Parameter <em>names</em>, bestimmt die Labels jedes Teilstücks des Kreisdiagramms, <em>values</em> ist eine Liste von Daten in Form von Integern.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="project_3.draw_timeline">
+<tt class="descclassname">project_3.</tt><tt class="descname">draw_timeline</tt><big>(</big><em>names</em>, <em>values</em>, <em>ylabel</em>, <em>title</em><big>)</big><a class="headerlink" href="#project_3.draw_timeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeichnet eine Timeline für einen bestimmten Datensatz (definiert über die Parameter).
+Eine Liste von Strings als Parameter <em>names</em> bestimmt die Labels der x-Achse, <em>values</em> eine Anzahl von Daten in Form einer Liste. Die Beschriftung der y-Achse wird durch einen String <em>ylabel</em> bestimmt. Das Parameter <em>title</em> gibt den Titel des Diagramms in Form eines Strings an.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="referenzen">
+<h2>Referenzen<a class="headerlink" href="#referenzen" title="Permalink to this headline">¶</a></h2>
+<p>Folgende Module fanden neben der Python Standard Library Verwendung:</p>
+<ul class="simple">
+<li>mendeley-oapi-example-master <a class="reference external" href="https://github.com/Mendeley/mendeley-oapi-example/">https://github.com/Mendeley/mendeley-oapi-example:</a></li>
+<li>Matplotlib: <a class="reference external" href="http://matplotlib.org/">http://matplotlib.org</a></li>
+</ul>
+<p>Alle Daten wurden mithilfe von Mendeley gesammelt:</p>
+<ul class="simple">
+<li>Mendeley: <a class="reference external" href="http://mendeley.com/">http://mendeley.com</a></li>
+<li>Mendeley-API: <a class="reference external" href="http://dev.mendeley.com/">http://dev.mendeley.com</a></li>
+</ul>
 </div>
 </div>
 
@@ -90,11 +142,12 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">project_3</span></tt> &#8212; Ein Modul für den Mendeley API-Zugriff</a><ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">project_3</span></tt> &#8212; Informetrische Untersuchung mit Mendeley und Matplotlib</a><ul>
 <li><a class="reference internal" href="#einleitung">Einleitung</a></li>
-<li><a class="reference internal" href="#anleitung">Anleitung</a></li>
-<li><a class="reference internal" href="#referenzen">Referenzen</a></li>
+<li><a class="reference internal" href="#funktionsumfang">Funktionsumfang</a></li>
+<li><a class="reference internal" href="#benutzung">Benutzung</a></li>
 <li><a class="reference internal" href="#funktionen">Funktionen</a></li>
+<li><a class="reference internal" href="#referenzen">Referenzen</a></li>
 </ul>
 </li>
 </ul>
