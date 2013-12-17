@@ -23,12 +23,13 @@ if __name__ == "__main__":
 
     # ### Collect the required data ###
 
-    mendeley = create_client()
+    # mendeley = create_client()
     # categories = mendeley.categories()
 
     # Overall publications publications of all time
-    # TODO fix
-    # overall_pub = mendeley.paper_stats()
+    # overall_pub = {}
+    # for i in range(2003, 2013):
+    #     overall_pub[i]=mendeley.search("year:%s"%i)["total_results"]
 
     # # Top 20 Tags from Computer and Information Science (cat 6)
     # top20tags = mendeley.tag_stats(6)
@@ -37,16 +38,18 @@ if __name__ == "__main__":
     # pub_stock = mendeley.search("author:\"Wolfgang G Stock\"", items=500)
 
     # Top 10 publications published in "Nature"
-    top10_nature = mendeley.search("published_in:\"Nature\"", items=10)
+    # top10_nature = mendeley.search("published_in:\"Nature\"", items=10)
 
     # All Publications with the tag "ontology"
-    # onto_tagged = []
+    # onto_tagged = {}
     # for category in categories:
-    #     page_count = mendeley.tagged("ontology", cat=category["id"],items=500)["total_pages"]
-    #     for page_num in range(1, page_count):
-    #         tags = mendeley.tagged("ontology", cat=category["id"], items=500, page_count)
-    #         onto_tagged.append(tags)
-    # TODO Limit to year 2011
+    #     onto_tagged[category["id"]] = 0
+    #     page_count = mendeley.tagged("ontology", items=500)["total_pages"]
+    #     for page_num in range(1, page_count+1):
+    #         tagged = mendeley.tagged("ontology", items=500, page=page_num)
+    #         for document in tagged["documents"]:
+    #             if document["year"]==2011:
+    #                 onto_tagged[category["id"]] += 1
 
 
     # ### Save the collected data in pickle files ###
@@ -54,7 +57,7 @@ if __name__ == "__main__":
     # save_as_pickle(overall_pub, "overall_pub")
     # save_as_pickle(top20tags, "top20tags")
     # save_as_pickle(pub_stock, "pub_stock")
-    save_as_pickle(top10_nature, "top10_nature")
+    # save_as_pickle(top10_nature, "top10_nature")
     # save_as_pickle(onto_tagged, "onto_tagged")
 
 
@@ -78,25 +81,23 @@ if __name__ == "__main__":
     # fig.autofmt_xdate()
     # p.show()
 
-    """
     # Overall Publications
-    publications = open_from_pickle("overall_pub")
-    pub_years = {}
-    pub_syears = []
-    pub_scount = []
-    for element in publications:
-        if element["year"] in pub_years:
-            pub_years[element["year"]] += 1
-        else:
-            pub_years[element["year"]] = 1
-    sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
-    for element in sorted_years:
-        pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
-        pub_scount.append(element[1])
-    p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
-    p.ylabel("Publications")
-    p.title("Overall number of Publications/year")
-    p.grid=True
-    p.show()
+    # publications = open_from_pickle("overall_pub")
+    # pub_years = {}
+    # pub_syears = []
+    # pub_scount = []
+    # for element in publications:
+    #     if element["year"] in pub_years:
+    #         pub_years[element["year"]] += 1
+    #     else:
+    #         pub_years[element["year"]] = 1
+    # sorted_years = sorted(pub_years.iteritems(), key=operator.itemgetter(0))
+    # for element in sorted_years:
+    #     pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
+    #     pub_scount.append(element[1])
+    # p.plot_date(x=pub_syears, y=pub_scount, fmt="r-")
+    # p.ylabel("Publications")
+    # p.title("Overall number of Publications/year")
+    # p.grid=True
+    # p.show()
     # TODO: y-Achse auf 0 setzen und mehr Werte
-    """
