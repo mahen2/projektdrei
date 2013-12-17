@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     # ### Collect the required data ###
 
-    # mendeley = create_client()
+    mendeley = create_client()
     # categories = mendeley.categories()
 
     # Export all categories for later usage
@@ -82,8 +82,8 @@ if __name__ == "__main__":
     # Top 10 publications published in "Nature"
     # search_nature = mendeley.search("published_in:\"Nature\"", items=10)
     # top10_nature = {}
-    # for elem in open_from_pickle("top10_nature")["documents"]:
-    #     search_nature[elem["title"]] = mendeley.details(elem["uuid"])\
+    # for elem in search_nature["documents"]:
+    #     top10_nature[elem["title"]] = mendeley.details(elem["uuid"])\
     #                                    ["stats"]["readers"]
     # save_as_pickle(top10_nature, "top10_nature")
 
@@ -205,15 +205,15 @@ if __name__ == "__main__":
 
     # Draws a piechart given the frequencys a category on mendeley was tagged with "ontology".
 
-    # Ontology
-    ontology = open_from_pickle("onto_tagged")
-    categories = []
-    values = []
-    for element in ontology:
-        categories.append(element)
-        values.append(ontology[element])
-    draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
-    """
+    # # Ontology
+    # ontology = open_from_pickle("onto_tagged")
+    # categories = []
+    # values = []
+    # for element in ontology:
+    #     categories.append(element)
+    #     values.append(ontology[element])
+    # draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
+
     # Draws a barchart for the ranked top 10 publications of the journal "Nature and Science"
     # Top 10 Nature and Science
     ns = open_from_pickle("top10_nature")
@@ -223,4 +223,3 @@ if __name__ == "__main__":
         articles.append(element)
         readers.append(ns[element])
     draw_barchart(articles, readers, "Leser", "Top 10 populaerste Publikationen in 'Nature and Science'")
-"""
