@@ -215,3 +215,12 @@ if __name__ == "__main__":
     #         values.append(ontology[element])
     # draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
 
+    # Draws a barchart for the ranked top 10 publications of the journal "Nature and Science"
+    # Top 10 Nature and Science
+    ns = open_from_pickle("top10_nature")
+    articles = []
+    readers = []
+    for element in ns:
+        articles.append(element)
+        readers.append(ns[element])
+    draw_barchart(articles, readers, "Leser", "Top 10 populaerste Publikationen in 'Nature and Science'")
