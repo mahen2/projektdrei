@@ -118,7 +118,7 @@ if __name__ == "__main__":
     for element in tags:
         tags_value.append(element["count"])
         tags_name.append(element["name"].encode("utf-8"))
-    draw_barchart(tags_name, tags_value, "Haeufigkeit des vergebenen Tags", "Top20 Tags der Kategorie 'Computer and Informationscience'")
+    draw_barchart(tags_name, tags_value, "Haeufigkeit des vergebenen Tags", "Top20 Tags der Kategorie 'Computer and Information Science'")
 
 
     # Draws a piechart giving the percentage distribution of the overall publications of the last 10 years.
