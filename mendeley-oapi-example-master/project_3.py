@@ -16,8 +16,39 @@ def open_from_pickle(filename):
     with open("%s.pk" % filename, "rb") as p_input:
         r_object = pickle.load(p_input)
     return r_object
+    
+def draw_barchart(names, values, ylabel, title):
+    ind=range(len(values))
+    fig = p.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.bar(ind, values)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    ax.set_xticks(ind)
+    ax.set_xticklabels(names)
+    fig.autofmt_xdate()
+    p.show()    
 
+def draw_piechart(names, values):
+    t= 0
+    sizes=[]
+    for element in values:
+        t = t+element
+    for element in values:
+        x = (float(element)/t)*100
+        sizes.append(x)
+    p.pie(sizes, labels=names, autopct='%1.1f%%', startangle=90)
+    p.axis('equal')
+    p.show()
 
+def draw_timeline(names, values, ylabel, title):
+    p.plot_date(x=names, y=values, fmt="-")
+    p.ylabel(ylabel)
+    p.title(title)
+    p.ylim(ymin=0)
+    p.grid=True
+    p.show()
+    
 if __name__ == "__main__":
 
 
@@ -68,29 +99,21 @@ if __name__ == "__main__":
 
     # ### Plotting ###
 
+    """
     # Top20 Tags
-    # tags = open_from_pickle("top20tags")
-    # tags_value = []
-    # tags_name = []
-    # for element in tags:
-    #   tags_value.append(element["count"])
-    #   tags_name.append(element["name"].encode("utf-8"))
-    # ind=range(len(tags_value))
-    # fig = p.figure()
-    # ax = fig.add_subplot(1,1,1)
-    # ax.bar(ind, tags_value, align='center')
-    # ax.set_ylabel('Anzahl')
-    # ax.set_title("Top20 Tags der Kategorie 'Computer and Informationscience'")
-    # ax.set_xticks(ind)
-    # ax.set_xticklabels(tags_name)
-    # fig.autofmt_xdate()
-    # p.show()
-
+    tags = open_from_pickle("top20tags")
+    tags_value = []
+    tags_name = []
+    for element in tags:
+        tags_value.append(element["count"])
+        tags_name.append(element["name"].encode("utf-8"))
+    draw_barchart(tags_name, tags_value, "Haeufigkeit des vergebenen Tags", "Top20 Tags der Kategorie 'Computer and Informationscience'")
+    """
+    
+    
     """
     # Overall Publications
     publications = open_from_pickle("overall_pub")
-    sizes = []
-    t = 0
     pub_years = {}
     pub_syears = []
     pub_scount = []
@@ -104,15 +127,9 @@ if __name__ == "__main__":
     for element in sorted_years:
         pub_syears.append(element[0])
         pub_scount.append(element[1])
-    for element in pub_scount:
-        t = t+element
-    for element in pub_scount:
-        x = (float(element)/t)*100
-        sizes.append(x)
-    p.pie(sizes, labels=pub_syears, autopct='%1.1f%%', startangle=90)
-    p.axis('equal')
-    p.show()
+    draw_piechart(pub_syears, pub_scount)
     """
+    
     """
     # Stock Publications/Year
     publications = open_from_pickle("pub_stock")
@@ -140,14 +157,10 @@ if __name__ == "__main__":
     for element in sorted_years:
         pub_syears.append(datetime.strptime(str(element[0]) , '%Y'))
         pub_scount.append(element[1])
-    p.plot_date(x=pub_syears, y=pub_scount, fmt="-")
-    p.ylabel("Publications")
-    p.title("Number of Publications/year from Wolfgang G. Stock")
-    p.ylim(ymin=0)
-    p.grid=True
-    p.show()
+    draw_timeline(pub_syears, pub_scount, "Anzahl der Publikationen", "Anzahl der Publikationen/Jahr von Wolfgang G. Stock")
     """
     
+    """
     # Stock Co-Authors
     publications = open_from_pickle("pub_stock")["documents"]
     authors = {}
@@ -165,15 +178,17 @@ if __name__ == "__main__":
     for element in sorted_authors:
         authors_name.append(element[0])
         authors_value.append(element[1])
-    ind=range(len(authors_value))
-    fig = p.figure()
-    ax = fig.add_subplot(1,1,1)
-    ax.bar(ind, authors_value)
-    ax.set_ylabel('Anzahl gem. publizierter Artikel')
-    ax.set_title("Co-Autoren von Wolfgang G. Stock")
-    ax.set_xticks(ind)
-    ax.set_xticklabels(authors_name)
-    fig.autofmt_xdate()
-    p.ylim(ymax=8)
-    p.show()    
+    draw_barchart(authors_name, authors_value, "Anzahl gem. publizierter Artikel", "Co-Autoren von Wolfgang G. Stock") 
+    """
     
+    """
+    # Ontology
+    ontology = open_from_pickle("onto_tagged")
+    categories = []
+    values = []
+    for element in ontology:
+        if ontology[element] != 0:
+            categories.append(element)
+            values.append(ontology[element])
+    draw_barchart(categories, values, "Haeufigkeit der Vergabe", "Mit 'ontology' getaggte Kategorien")
+    """
