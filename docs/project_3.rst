@@ -40,51 +40,56 @@ Auswertung und Interpretation
 
 Das Kreisdiagramm zeigt die Verteilung der Publikationen, welche in den Jahren von 2003 bis 2012 veröffentlicht wurden, in Prozent an. Bisher wurden im Jahr 2010 die größte Anzahl an Publikationen in Mendeley verzeichnet (20%). Die Anzahl an Publikationen nimmt bis zum Jahr 2003 hin ab - die in diesem Jahr veröffentlichten Publikationen machen nur 2,9% aus.
  
+
 * Top 20 Tags in der Kategorie „Computer and Information Science“
 
 Die Top 20 Tags in der Kategorie „Computer and Information Science“ werden durch ein Balkendiagramm dargestellt. Der am meisten für Dokumente vergebene Tag in dieser Kategorie ist mit großem Abstand „security“ gefolgt von „nofiltro3“ und „cloud computing“.
+
 
 * Top 10 Publikationen aus der Zeitschrift „Nature“
 
 Dieses Diagramm visualisiert die gesammelten Daten zu den Publikationen aus der Zeitschrift „Nature and Science“ mit den meisten Lesern. Die x-Achse zeigt die Namen der jeweiligen Publikation während die y-Achse die Anzahl der Leser anzeigt. 
 
+
 * Publikationen von Prof. Wolfang G. Stock: Publikationsanzahl pro Jahr
 
 Der Graph veranschaulicht die Anzahl der von Professor Wolfgang G. Stock veröffentlichten Dokumente über die Jahre. Es ist deutlich erkennbar, dass die Anzahl der Publikationen seit 2009 stark angestiegen ist. Mit 8 Publikationen hat Professor Stock bisher die meisten Publikationen im Jahr 2010 veröffentlicht, wenn man die Daten aus Mendeley auswertet.
+
 
 * Publikationen von Prof. Wolfang G. Stock: Co-Autoren Ranking
 
 Das Diagramm zeigt alle Forscher, die mit Professor Stock zusammen veröffentlicht haben. Er hat mit zahlreichen Co-Autoren publiziert, wobei am häufigsten eine Zusammenarbeit mit Frau Isabella Peters (7 mal) verzeichnet wurde. Platz zwei bis vier belegen Kathrin Knautz, Christian Schloegl und Tobias Siebenlist mit jeweils drei Kollaborationen. Mit den meisten Autoren hat Professor Stock jedoch nur einmal zusammen gearbeitet.
 
+
 * Häufigkeit des Tags „ontology“ in allen Kategorien im Jahr 2011
 
 Bei Mendeley gibt es 25 thematische Kategorien, in denen die Einträge abgelegt werden können. Folgende Kategorien wurden durchnummeriert und auf die Häufigkeit des Tags „ontology“ untersucht:
 
-   Arts and Literature (1)
-   Astronomy / Astrophysics / Space Science (2)
-   Biological Sciences (3)
-   Business Administration (4)
-   Chemistry (5)
-   Computer and Information Science (6)
-   Earth Sciences (7)
-   Economics (8)
-   Education (9)
-   Electrical and Electronic Engineering (10)
-   Engineering (11)
-   Environmental Sciences (12)
-   Humanities (13)
-   Law (14)
-   Linguistics (15)
-   Management Science / Operations Research (16)
-   Materials Science (17)
-   Mathematics (18)
-   Medicine (19)
-   Philosophy (20)
-   Physics (21) 
-   Psychology (22) 
-   Social Sciences (23)
-   Sports and Recreation (24)
-   Design (25)
+Arts and Literature (1)
+Astronomy / Astrophysics / Space Science (2)
+Biological Sciences (3)
+Business Administration (4)
+Chemistry (5)
+Computer and Information Science (6)
+Earth Sciences (7)
+Economics (8)
+Education (9)
+Electrical and Electronic Engineering (10)
+Engineering (11)
+Environmental Sciences (12)
+Humanities (13)
+Law (14)
+Linguistics (15)
+Management Science / Operations Research (16)
+Materials Science (17)
+Mathematics (18)
+Medicine (19)
+Philosophy (20)
+Physics (21) 
+Psychology (22) 
+Social Sciences (23)
+Sports and Recreation (24)
+Design (25)
 
 Das Diagramm zu dieser Auswertung zeigt, wie oft der Tag „ontology“ in jeder der 25 Kategorien vorhanden ist. Es wird sofort deutlich, dass der Tag am häufigsten in der Kategorie „Computer and Information Science“ vergeben wird. 
 
