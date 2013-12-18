@@ -6,7 +6,7 @@
 Einleitung
 ----------
 
-Mit dem vorliegenden Programm werden Publikationen informetrisch untersucht. Als Basis für den Datensatz dient das Literaturverwaltungsprogramm Mendeley. Mendeley beinhaltet nicht nur eine Desktopversion zum Verwalten von Referenzen und PDF-Dateien, sondern auch ein soziales Online-Netzwerk für den Austausch und Kollaborationen zwischen Forschern. Das Programm greift auf die Publikationsdaten über die Mendeley-API zu, wertet sie aus und visualisiert sie mit Hilfe von Matplotlib.
+Mit dem vorliegenden Programm werden Publikationen in Mendeley informetrisch untersucht. Als Basis für den Datensatz dient das Literaturverwaltungsprogramm Mendeley. Mendeley beinhaltet nicht nur eine Desktopversion zum Verwalten von Referenzen und PDF-Dateien, sondern auch ein soziales Online-Netzwerk für den Austausch und Kollaborationen zwischen Forschern. Das Programm greift auf die Publikationsdaten über die Mendeley-API zu, wertet sie aus und visualisiert sie mit Hilfe von Matplotlib.
 
 Funktionsumfang
 ---------------
@@ -15,7 +15,7 @@ Folgende Daten von den Mendeley-Servern gesammelt und visualisiert:
 
 * Verteilung der Publikationen auf die letzten 10 Jahre
 * Top 20 Tags in der Kategorie „Computer and Information Science“
-* Top 10 Publikationen aus der „Nature“
+* Top 10 Publikationen aus der wissenschaftlichen Zeitschrift „Nature“
 * Special: Publikationen von Prof. Wolfang G. Stock
 
     * Publikationsanzahl pro Jahr
