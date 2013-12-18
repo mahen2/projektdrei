@@ -30,7 +30,7 @@ Wird das Programm direkt ausgeführt werden zunächst alle Daten über die Mende
 
 Unter Umständen kann die Datensammlung das Limit der Mendeley-API ausreizen. Ist dies der Fall müssen zunächst einzelne Abschnitte auskommentiert werden. Die Datensammlung wird im Code durch den Kommentar *# ### Collect the required data ###* eingeleitet.
 
-Die gesammelten Daten werden autmatisch zwischengespeichert, sodass nicht bei jedem Programmaufruf auf die API zugegriffen werden muss. Um die zwischengespeicherten Daten zu verwenden, kann die gesammte Datensammlung auskommentiert werden (markiert durch * # ### Collect the required data ###*).
+Die gesammelten Daten werden autmatisch zwischengespeichert, sodass nicht bei jedem Programmaufruf auf die API zugegriffen werden muss. Um die zwischengespeicherten Daten zu verwenden, kann die gesammte Datensammlung auskommentiert werden (markiert durch *# ### Collect the required data ###*).
 Das Programm wird bereits mit Daten vom 17 Dezember 2013 ausgeliefert. Die Rechte dieser Daten liegt bei Mendeley.
 
 Auswertung und Interpretation
@@ -111,10 +111,10 @@ Auswertung und Interpretation
     * Sports and Recreation (24)
     * Design (25)
 
-    .. image:: ontology.png
-        :height: 450px
-
     Das Diagramm zu dieser Auswertung zeigt, wie oft der Tag „ontology“ in jeder der 25 Kategorien vorhanden ist. Es wird sofort deutlich, dass der Tag am häufigsten in der Kategorie „Computer and Information Science“ vergeben wird.
+
+        .. image:: ontology.png
+        :height: 450px
 
 
 
