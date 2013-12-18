@@ -37,7 +37,6 @@ Auswertung und Interpretation
 -----------------------------
 
 **Verteilung der Publikationen auf die letzten 10 Jahre**
-<<<<<<< HEAD
 
     Das Kreisdiagramm zeigt die Verteilung der Publikationen, welche in den Jahren von 2003 bis 2012 veröffentlicht wurden, in Prozent an. Bisher wurden im Jahr 2010 die größte Anzahl an Publikationen in Mendeley verzeichnet (20%). Die Anzahl an Publikationen nimmt bis zum Jahr 2003 hin ab - die in diesem Jahr veröffentlichten Publikationen machen nur 2,9% aus.
 
@@ -47,17 +46,11 @@ Auswertung und Interpretation
 
 
 **Top 20 Tags in der Kategorie „Computer and Information Science“**
-=======
->>>>>>> 7801a729eb413a272ea20b42023337426972ec56
 
     Die Top 20 Tags in der Kategorie „Computer and Information Science“ werden durch ein Balkendiagramm dargestellt. Der am meisten für Dokumente vergebene Tag in dieser Kategorie ist mit großem Abstand „security“ gefolgt von „nofiltro3“ und „cloud computing“.
 
-<<<<<<< HEAD
     .. image:: Top20Tags.png
         :height: 450px
-=======
-**Top 20 Tags in der Kategorie „Computer and Information Science“**
->>>>>>> 7801a729eb413a272ea20b42023337426972ec56
 
 
 
@@ -68,32 +61,18 @@ Auswertung und Interpretation
     .. image:: top10_NS.png
         :height: 450px
 
-<<<<<<< HEAD
-=======
-**Publikationen von Prof. Wolfang G. Stock: Publikationsanzahl pro Jahr**
->>>>>>> 7801a729eb413a272ea20b42023337426972ec56
 
 
 **Publikationen von Prof. Wolfang G. Stock: Publikationsanzahl pro Jahr**
 
-<<<<<<< HEAD
     Der Graph veranschaulicht die Anzahl der von Professor Wolfgang G. Stock veröffentlichten Dokumente über die Jahre. Es ist deutlich erkennbar, dass die Anzahl der Publikationen seit 2009 stark angestiegen ist. Mit 8 Publikationen hat Professor Stock bisher die meisten Publikationen im Jahr 2010 veröffentlicht, wenn man die Daten aus Mendeley auswertet.
-=======
-**Publikationen von Prof. Wolfang G. Stock: Co-Autoren Ranking**
->>>>>>> 7801a729eb413a272ea20b42023337426972ec56
 
     .. image:: Stock_publications_timeline.png
         :height: 450px
 
 
-<<<<<<< HEAD
-=======
-**Häufigkeit des Tags „ontology“ in allen Kategorien im Jahr 2011**
->>>>>>> 7801a729eb413a272ea20b42023337426972ec56
 
 **Publikationen von Prof. Wolfang G. Stock: Co-Autoren Ranking**
-
-
 
     Das Diagramm zeigt alle Forscher, die mit Professor Stock zusammen veröffentlicht haben. Er hat mit zahlreichen Co-Autoren publiziert, wobei am häufigsten eine Zusammenarbeit mit Frau Isabella Peters (7 mal) verzeichnet wurde. Platz zwei bis vier belegen Kathrin Knautz, Christian Schloegl und Tobias Siebenlist mit jeweils drei Kollaborationen. Mit den meisten Autoren hat Professor Stock jedoch nur einmal zusammen gearbeitet.
 

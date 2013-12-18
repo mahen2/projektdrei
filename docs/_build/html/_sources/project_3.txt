@@ -74,8 +74,6 @@ Auswertung und Interpretation
 
 **Publikationen von Prof. Wolfang G. Stock: Co-Autoren Ranking**
 
-
-
     Das Diagramm zeigt alle Forscher, die mit Professor Stock zusammen veröffentlicht haben. Er hat mit zahlreichen Co-Autoren publiziert, wobei am häufigsten eine Zusammenarbeit mit Frau Isabella Peters (7 mal) verzeichnet wurde. Platz zwei bis vier belegen Kathrin Knautz, Christian Schloegl und Tobias Siebenlist mit jeweils drei Kollaborationen. Mit den meisten Autoren hat Professor Stock jedoch nur einmal zusammen gearbeitet.
 
     .. image:: Stock_Co-Authors.png
