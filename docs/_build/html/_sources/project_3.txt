@@ -35,7 +35,16 @@ Das Programm wird bereits mit Daten vom 17 Dezember 2013 ausgeliefert. Die Recht
 
 Auswertung und Interpretation
 -----------------------------
-
+.. image:: Stock_Co-Authors.png
+    :height: 450px
+.. image:: Stock_publications_timeline.png
+    :height: 450px
+.. image:: top10_NS.png
+    :height: 450px
+.. image:: Top20Tags.png
+    :height: 450px
+.. image:: Verteilung_overall.png
+    :height: 350px
 
 Blablub informetrie
 

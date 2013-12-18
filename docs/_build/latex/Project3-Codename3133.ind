@@ -1,0 +1,21 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter D
+  \item draw\_barchart() (in module project\_3), \hyperpage{6}
+  \item draw\_piechart() (in module project\_3), \hyperpage{6}
+  \item draw\_timeline() (in module project\_3), \hyperpage{6}
+
+  \indexspace
+  \bigletter O
+  \item open\_from\_pickle() (in module project\_3), \hyperpage{6}
+
+  \indexspace
+  \bigletter P
+  \item project\_3 (module), \hyperpage{3}
+
+  \indexspace
+  \bigletter S
+  \item save\_as\_pickle() (in module project\_3), \hyperpage{6}
+
+\end{theindex}

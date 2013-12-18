@@ -14,7 +14,7 @@
 
 
 \title{Project 3 - Codename 3133 Documentation}
-\date{December 17, 2013}
+\date{December 18, 2013}
 \release{1.0}
 \author{Maria Henkel, Maurice Schleussinger, Dennis Weber}
 \newcommand{\sphinxlogo}{}
@@ -174,6 +174,16 @@ Das Programm wird bereits mit Daten vom 17 Dezember 2013 ausgeliefert. Die Recht
 
 \section{Auswertung und Interpretation}
 \label{project_3:auswertung-und-interpretation}
+\includegraphics{Stock_Co-Authors.png}
+
+\includegraphics{Stock_publications_timeline.png}
+
+\includegraphics{top10_NS.png}
+
+\includegraphics{Top20Tags.png}
+
+\includegraphics{Verteilung_overall.png}
+
 Blablub informetrie
 
 
@@ -220,6 +230,99 @@ Eine Liste von Strings als Parameter \emph{names} bestimmt die Labels der x-Achs
 
 \end{fulllineitems}
 
+
+
+\section{Details Datensammlung}
+\label{project_3:details-datensammlung}
+Da hier einmalig spezifische Daten gesammelt werden, erscheint ein modularer Aufbau für die Datensammlung wenig sinnvoll. Dementsprechend werden die folgenden Abfragen direkt bei Programmaufruf ausgeführt.
+
+Die gesammelten Daten werden jeweils mit {\hyperref[project_3:project_3.save_as_pickle]{\code{save\_as\_pickle()}}} als Pickle-Datei gespeichert.
+
+\textbf{Verteilung der Publikationen auf die letzten 10 Jahre}
+\begin{quote}
+
+In mehreren Durchläufen (ein Durchlauf pro Jahr) werden alle Publikationen gesucht, die in dem entsprechenden Jahr erschienen sind.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{overall\PYGZus{}pub} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{2003}\PYG{p}{,} \PYG{l+m+mi}{2013}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{overall\PYGZus{}pub}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{year:}\PYG{l+s+si}{\PYGZpc{}s}\PYG{l+s}{\PYGZdq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{i}\PYG{p}{)}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{total\PYGZus{}results}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{save\PYGZus{}as\PYGZus{}pickle}\PYG{p}{(}\PYG{n}{overall\PYGZus{}pub}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{overall\PYGZus{}pub}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
+
+Die Mendeley-API gibt hier die Gesamtanzahl von Publikationen in der Ergebnismenge an. Diese Information als Wert bildet zusammen mit dem Jahr als Schlüsssel einen Eintrag in einem Dictionary.
+\end{quote}
+
+\textbf{Top 20 Tags in der Kategorie „Computer and Information Science“}
+\begin{quote}
+
+Die Mendeley-API ermöglicht Zugriff auf Statistiken für Tags bestimmter Kategorien. Die Kategorie wird als ID (hier 6) übergeben.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{top20tags} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{tag\PYGZus{}stats}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{n}{save\PYGZus{}as\PYGZus{}pickle}\PYG{p}{(}\PYG{n}{top20tags}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{top20tags}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
+
+Die IDs der einzelnen Kategorien können über die API abgefragt werden.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{categories} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{categories}\PYG{p}{(}\PYG{p}{)}
+\end{Verbatim}
+\end{quote}
+
+\textbf{Top 10 Publikationen aus der „Nature“}
+\begin{quote}
+
+Die Mendeley Suche mit ``published\_in:'' als Suchparameter gibt standardmäßig Publikationen sortiert nach Leseranzahl zurück.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{search\PYGZus{}nature} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{published\PYGZus{}in:}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s}{Nature}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{items}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}
+\end{Verbatim}
+
+Um die Daten visualisieren zu können, müssen zusätzlich noch die Leser jeder Publikation bestimmt werden. Mendeley gibt diese Information über über die Methode ''.details'' an. Parameter ist eine spezielle UUID der jeweiligen Publikation.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{top10\PYGZus{}nature} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+\PYG{k}{for} \PYG{n}{elem} \PYG{o+ow}{in} \PYG{n}{search\PYGZus{}nature}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{documents}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{:}
+    \PYG{n}{top10\PYGZus{}nature}\PYG{p}{[}\PYG{n}{elem}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{title}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{]} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{details}\PYG{p}{(}\PYG{n}{elem}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{uuid}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{stats}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{readers}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{save\PYGZus{}as\PYGZus{}pickle}\PYG{p}{(}\PYG{n}{top10\PYGZus{}nature}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{top10\PYGZus{}nature}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
+\end{quote}
+
+\textbf{Special: Publikationen von Prof. Wolfang G. Stock}
+\begin{quote}
+
+Die Mendeley-API bietet zwar eine spezielle Methode für die Autorensuche an, allerdings ermöglicht diese keine Suche nach exaktem Autorennamen. Stattdessen wird die normale Suche mit ``authored:'' als Suchparameter verwendet. Die Anführungszeichen erzwingen exakte Übereinstimmung.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{pub\PYGZus{}stock} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{author:}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s}{Wolfgang G Stock}\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{items}\PYG{o}{=}\PYG{l+m+mi}{500}\PYG{p}{)}
+\PYG{n}{save\PYGZus{}as\PYGZus{}pickle}\PYG{p}{(}\PYG{n}{pub\PYGZus{}stock}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{pub\PYGZus{}stock}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
+
+Die weitere Verarbeitung erfolgt direkt bei der Visualisierung. Alle notwendigen Informationen befinden sich in der Ergebnismenge (Publikationsanzahl pro Jahr
+und Co-Autoren Ranking).
+\end{quote}
+
+\textbf{Häufigkeit des Tags „ontology“ in allen Kategorien im Jahr 2011}
+\begin{quote}
+
+Für jede Kategorie in Mendeley wird die Häufigkeit des Tags ``ontology'' bestimmt. Hierfür wird zunächst für jede Kategorie ein Eintrag in einem Dictionary \emph{onto\_tagged} mit initial 0 als Zählwert vorgenommen. Dann werden alle passenden Tags in der jeweiligen Kategorie abgefragt. Da die Mendeley-API Documentmengen ab einer gewissen Größe auf mehrere Seiten aufteilt, muss entsprechend der Seitenzahl mehrmals abgefragt werden.
+Für jeden Eintrag in der Ergebnismenge mit 2011 als Publikationsjahr, wird der Zahlenwert für die Kategorie im Dictionary \emph{onto\_tagged} um 1 erhöht.
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{onto\PYGZus{}tagged} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+\PYG{k}{for} \PYG{n}{category} \PYG{o+ow}{in} \PYG{n}{categories}\PYG{p}{:}
+    \PYG{n}{cat\PYGZus{}id} \PYG{o}{=} \PYG{n}{category}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{id}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+    \PYG{n}{onto\PYGZus{}tagged}\PYG{p}{[}\PYG{n}{cat\PYGZus{}id}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+    \PYG{n}{page\PYGZus{}count} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{tagged}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ontology}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cat}\PYG{o}{=}\PYG{n}{cat\PYGZus{}id}\PYG{p}{,} \PYG{n}{items}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{total\PYGZus{}pages}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{page\PYGZus{}num} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{page\PYGZus{}count}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{tagged} \PYG{o}{=} \PYG{n}{mendeley}\PYG{o}{.}\PYG{n}{tagged}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ontology}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cat}\PYG{o}{=}\PYG{n}{cat\PYGZus{}id}\PYG{p}{,} \PYG{n}{items}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{page}\PYG{o}{=}\PYG{n}{page\PYGZus{}num}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{document} \PYG{o+ow}{in} \PYG{n}{tagged}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{documents}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{document}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{year}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{==}\PYG{l+m+mi}{2011}\PYG{p}{:}
+                \PYG{n}{onto\PYGZus{}tagged}\PYG{p}{[}\PYG{n}{cat\PYGZus{}id}\PYG{p}{]} \PYG{o}{+}\PYG{o}{=} \PYG{l+m+mi}{1}
+\PYG{n}{save\PYGZus{}as\PYGZus{}pickle}\PYG{p}{(}\PYG{n}{onto\PYGZus{}tagged}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{onto\PYGZus{}tagged}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
+\end{quote}
 
 
 \section{Referenzen}
