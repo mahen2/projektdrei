@@ -114,7 +114,7 @@ Auswertung und Interpretation
     Das Diagramm zu dieser Auswertung zeigt, wie oft der Tag „ontology“ in jeder der 25 Kategorien vorhanden ist. Es wird sofort deutlich, dass der Tag am häufigsten in der Kategorie „Computer and Information Science“ vergeben wird.
 
         .. image:: ontology.png
-        :height: 450px
+            :height: 450px
 
 
 
