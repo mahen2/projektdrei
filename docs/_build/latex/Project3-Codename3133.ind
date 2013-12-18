@@ -2,13 +2,13 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter D
-  \item draw\_barchart() (in module project\_3), \hyperpage{6}
-  \item draw\_piechart() (in module project\_3), \hyperpage{6}
-  \item draw\_timeline() (in module project\_3), \hyperpage{6}
+  \item draw\_barchart() (in module project\_3), \hyperpage{8}
+  \item draw\_piechart() (in module project\_3), \hyperpage{8}
+  \item draw\_timeline() (in module project\_3), \hyperpage{8}
 
   \indexspace
   \bigletter O
-  \item open\_from\_pickle() (in module project\_3), \hyperpage{6}
+  \item open\_from\_pickle() (in module project\_3), \hyperpage{8}
 
   \indexspace
   \bigletter P
@@ -16,6 +16,6 @@
 
   \indexspace
   \bigletter S
-  \item save\_as\_pickle() (in module project\_3), \hyperpage{6}
+  \item save\_as\_pickle() (in module project\_3), \hyperpage{8}
 
 \end{theindex}
